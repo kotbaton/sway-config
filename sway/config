@@ -25,12 +25,17 @@ set $lock_cmd swaylock -f --image /home/sheh/Pictures/tochou_girl_blurred.png
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/sheh/Pictures/tochou_girl.png fill
+output DP-1 bg /home/sheh/Pictures/5vSNDcQffYs.jpg fill
+output DP-3 bg /home/sheh/Pictures/FHQtAvlYWuU.jpg fill
 #
 # Example configuration:
 #
+# Laptop
 output eDP1 resolution 1920x1080 position 0,0 scale 1.25
 
+# PC
+output DP-1 resolution 3840x2160 position 1080,0 scale 1.5
+output DP-3 resolution 1920x1080 position 0,0 scale 1.0 transform 270
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
@@ -52,15 +57,6 @@ input type:keyboard {
     xkb_layout "pl,ru"
     xkb_options "grp:win_space_toggle,caps:escape"
 }
-
-input type:touchpad {
-    natural_scroll "enabled"
-    drag "enabled"
-    tap "enabled"
-}
-
-input "9094:17208:Raydium_Corporation_Raydium_Touch_System" map_to_output "eDP-1"
-input "1386:890:Wacom_One_by_Wacom_S_Pen" map_to_output "eDP-1"
 
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
@@ -210,7 +206,7 @@ bindsym Shift+XF86Keyboard exec "swaymsg input '1267:47:Elan_Touchpad' dwt disab
     bindsym XF86Display exec "~/.config/sway/screen-menu.sh"
 
 # Start applications
-    bindsym $mod+F1 exec "env GDK_DPI_SCALE=0.80 /usr/lib/firefox/firefox"
+    bindsym $mod+F1 exec "/usr/lib/firefox/firefox"
     bindsym $mod+F2 exec pcmanfm
     bindsym $mod+F3 exec spotify-launcher
     bindsym $mod+F4 exec telegram-desktop
