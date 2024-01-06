@@ -212,8 +212,12 @@ bindsym $mod+Shift+r mode "resize"
     bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
     bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
     bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# Brightness
     bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
     bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+    bindsym Shift+XF86MonBrightnessDown exec brightnessctl set 1%
+    bindsym Shift+XF86MonBrightnessUp exec brightnessctl set 100%
 
 # Disable while typing on/off
 bindsym XF86Keyboard exec "swaymsg input '1267:47:Elan_Touchpad' dwt enabled; dunstify --icon='Touchpad' 'Sway' 'Touchpad disable when typing is active.'"
