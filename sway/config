@@ -224,6 +224,9 @@ bindsym $mod+Shift+r mode "resize"
     bindsym Alt+F1 exec playerctl play-pause
     bindsym Alt+F2 exec playerctl previous
     bindsym Alt+F3 exec playerctl next
+    bindsym $mod+XF86AudioMute exec playerctl play-pause
+    bindsym $mod+XF86AudioRaiseVolume exec playerctl next
+    bindsym $mod+XF86AudioLowerVolume exec playerctl previous
 
 # Disable while typing on/off
 bindsym XF86Keyboard exec "swaymsg input '1267:47:Elan_Touchpad' dwt enabled; dunstify --icon='Touchpad' 'Sway' 'Touchpad disable when typing is active.'"
