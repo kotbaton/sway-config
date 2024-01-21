@@ -232,6 +232,9 @@ bindsym $mod+Shift+r mode "resize"
 bindsym XF86Keyboard exec "swaymsg input '1267:47:Elan_Touchpad' dwt enabled; dunstify --icon='Touchpad' 'Sway' 'Touchpad disable when typing is active.'"
 bindsym Shift+XF86Keyboard exec "swaymsg input '1267:47:Elan_Touchpad' dwt disabled; dunstify --icon='Touchpad' 'Sway' 'Touchpad disable when typing is disabled.'"
 
+# Display menu
+    bindsym XF86Display exec "~/.config/sway/screen-menu.sh"
+
 # Start applications
     bindsym $mod+F1 exec "env GDK_DPI_SCALE=0.80 /usr/lib/firefox/firefox"
     bindsym $mod+F2 exec pcmanfm
