@@ -17,12 +17,13 @@ case "$chosen" in
         wlr-randr --output DP-1 --off
         wlr-randr --output HDMI-A-2 --off
         wlr-randr --output eDP-1 --on --preferred
+        killall wl-mirror
         ;;
 
     "$wi")
         wlr-randr --output eDP-1 --off\
-                  --output HDMI-A-2 --on --pos 0,0 --preferred --scale 1.0\
-                  --output DP-1 --on --mode 2560x1440 --pos 1920,0
+                  --output HDMI-A-2 --on --pos 0,0 --preferred --scale 1.0 --transform 90\
+                  --output DP-1 --on --mode 2560x1440 --pos 1080,0
         ;;
 
     "$mirrorHDMI")

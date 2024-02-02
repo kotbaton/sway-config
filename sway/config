@@ -20,6 +20,7 @@ set $term kitty
 # on the original workspace that the command was run on.
 # set $menu dmenu_path | dmenu | xargs swaymsg exec --
 set $menu rofi -show drun -modi drun -show-icons -width 30 -lines 8
+set $lock_cmd swaylock -f --image /home/sheh/Pictures/tochou_girl_blurred.png
 
 ### Output configuration
 #
@@ -37,25 +38,16 @@ output eDP1 resolution 1920x1080 position 0,0 scale 1.25
 #
 # Example configuration:
 #
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
-#          before-sleep 'swaylock -f -c 000000'
+exec swayidle -w \
+	timeout 600 $lock_cmd\
+	timeout 605 'swaymsg "output * power off"' \
+	resume 'swaymsg "output * power on"'
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
 
 ### Input configuration
-#
-# Example configuration:
-#
-#   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
 input type:keyboard {
     xkb_layout "pl,ru"
     xkb_options "grp:win_space_toggle,caps:escape"
@@ -117,6 +109,12 @@ input "1386:890:Wacom_One_by_Wacom_S_Pen" map_to_output "eDP-1"
     bindsym $mod+Shift+$down move down
     bindsym $mod+Shift+$up move up
     bindsym $mod+Shift+$right move right
+
+    # Resize focused windows with Ctrl
+    bindsym $mod+Ctrl+$left resize shrink width 10px
+    bindsym $mod+Ctrl+$down resize grow height 10px
+    bindsym $mod+Ctrl+$up resize shrink height 10px
+    bindsym $mod+Ctrl+$right resize grow width 10px
 #
 # Workspaces:
 #
@@ -130,7 +128,7 @@ input "1386:890:Wacom_One_by_Wacom_S_Pen" map_to_output "eDP-1"
     bindsym $mod+7 workspace number 7
     bindsym $mod+8 workspace number 8
     bindsym $mod+9 workspace number 9
-    #bindsym $mod+0 workspace number 10
+    bindsym $mod+0 workspace number 10
     # Move focused container to workspace
     bindsym $mod+Shift+1 move container to workspace number 1
     bindsym $mod+Shift+2 move container to workspace number 2
@@ -141,7 +139,7 @@ input "1386:890:Wacom_One_by_Wacom_S_Pen" map_to_output "eDP-1"
     bindsym $mod+Shift+7 move container to workspace number 7
     bindsym $mod+Shift+8 move container to workspace number 8
     bindsym $mod+Shift+9 move container to workspace number 9
-    #bindsym $mod+Shift+0 move container to workspace number 10
+    bindsym $mod+Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
 #
@@ -150,13 +148,13 @@ input "1386:890:Wacom_One_by_Wacom_S_Pen" map_to_output "eDP-1"
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    # bindsym $mod+b splith
+    bindsym $mod+b splith
     bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
-    #bindsym $mod+s layout stacking
-    #bindsym $mod+w layout tabbed
-    #bindsym $mod+e layout toggle split
+    bindsym $mod+s layout stacking
+    bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
@@ -183,30 +181,6 @@ input "1386:890:Wacom_One_by_Wacom_S_Pen" map_to_output "eDP-1"
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
     bindsym $mod+n scratchpad show
-#
-# Resizing containers:
-#
-mode "resize" {
-    # left will shrink the containers width
-    # right will grow the containers width
-    # up will shrink the containers height
-    # down will grow the containers height
-    bindsym $left resize shrink width 10px
-    bindsym $down resize grow height 10px
-    bindsym $up resize shrink height 10px
-    bindsym $right resize grow width 10px
-
-    # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
-
-    # Return to default mode
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-}
-bindsym $mod+Shift+r mode "resize"
 
 # Audio
     bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
@@ -240,7 +214,7 @@ bindsym Shift+XF86Keyboard exec "swaymsg input '1267:47:Elan_Touchpad' dwt disab
     bindsym $mod+F2 exec pcmanfm
     bindsym $mod+F3 exec spotify-launcher
     bindsym $mod+F4 exec telegram-desktop
-    bindsym Ctrl+Alt+L exec "swaylock -f --image /home/sheh/Pictures/tochou_girl_blurred.png"
+    bindsym Ctrl+Alt+L exec $lock_cmd
     bindsym Ctrl+Alt+Backspace exec "~/.config/sway/rofi-power"
 
 # Screenshots
@@ -248,7 +222,7 @@ bindsym Shift+XF86Keyboard exec "swaymsg input '1267:47:Elan_Touchpad' dwt disab
     bindsym Ctrl+Print exec "~/.config/sway/screenshot.sh"
 
 # Battery info
-    bindsym $mod+b exec dunstify "ACPI Info" "$(acpi)" --timeout 5000
+    bindsym $mod+Shift+b exec dunstify "ACPI Info" "$(acpi)" --timeout 5000
 
 # Rules
     for_window [app_id="org.telegram.desktop"] floating enable
@@ -269,7 +243,7 @@ set $aqua  #689d6a
 set $orange  #d65d0e
 
 # Other configurations
-focus_follows_mouse no
+focus_follows_mouse yes
 title_align center
 hide_edge_borders smart_no_gaps
 smart_borders on
@@ -283,7 +257,6 @@ client.urgent            $red      $black     $red
 client.focused_inactive  $darkGrey $black     $grey
 client.focused_tab_title $black    $black     $white
 
-
 include /etc/sway/config.d/*
 
 xwayland enable
@@ -291,7 +264,3 @@ xwayland enable
 exec waybar
 exec nm-applet
 
-exec swayidle -w \
-	timeout 600 'swaylock -f' \
-	timeout 605 'swaymsg "output * power off"' \
-	resume 'swaymsg "output * power on"'
