@@ -3,8 +3,8 @@
     "height": 24, // Waybar height (to be removed for auto height)
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
-    "modules-left": ["hyprland/workspaces", "hyprland/mode", "hyprland/scratchpad"],
-    "modules-center": ["hyprland/window"],
+    "modules-left": ["hyprland/workspaces"],
+    //"modules-center": ["hyprland/window"],
     "modules-right": ["custom/media",
                       "tray",
                       "idle_inhibitor",
@@ -172,6 +172,10 @@
         "on-click-middle": "playerctl play-pause",
         "on-click": "playerctl next",
         "on-click-right": "playerctl previous"
+    },
+    "hyprland/language": {
+        "format-ru": "RU",
+        "format-pl": "PL"
     },
     "hyprland/window": {
         "max-length": 200,
