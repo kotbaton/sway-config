@@ -1,9 +1,10 @@
 {
+    "layer": "top",
     "height": 24, // Waybar height (to be removed for auto height)
     "spacing": 4, // Gaps between modules (4px)
     // Choose the order of the modules
-    "modules-left": ["sway/workspaces", "sway/mode", "sway/scratchpad"],
-    //"modules-center": ["sway/window"],
+    "modules-left": ["hyprland/workspaces", "hyprland/mode", "hyprland/scratchpad"],
+    "modules-center": ["hyprland/window"],
     "modules-right": ["custom/media",
                       "tray",
                       "idle_inhibitor",
@@ -13,7 +14,7 @@
                       //"memory",
                       //"temperature",
                       "battery",
-                      "sway/language",
+                      "hyprland/language",
                       "clock"],
     // Modules configuration
     //"sway/workspaces": {
@@ -171,6 +172,10 @@
         "on-click-middle": "playerctl play-pause",
         "on-click": "playerctl next",
         "on-click-right": "playerctl previous"
+    },
+    "hyprland/window": {
+        "max-length": 200,
+        "separate-outputs": true
     }
 }
 

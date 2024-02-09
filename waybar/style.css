@@ -67,7 +67,7 @@ button:hover {
 }
 
 #workspaces button {
-    padding: 0 5px;
+    padding: 0 10px;
     background-color: transparent;
     color: @grey;
 }
@@ -76,6 +76,12 @@ button:hover {
     color: @grey;
     background: @darkGrey;
     box-shadow: inset 0 -3px @grey;
+}
+
+#workspaces button.active {
+    color: @lightOrange;
+    background-color: @darkGrey;
+    box-shadow: inset 0 -3px @lightOrange;
 }
 
 #workspaces button.focused {
