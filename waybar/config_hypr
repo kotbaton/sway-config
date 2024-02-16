@@ -175,7 +175,8 @@
     },
     "hyprland/language": {
         "format-ru": "RU",
-        "format-pl": "PL"
+        "format-pl": "PL",
+        "on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next"
     },
     "hyprland/window": {
         "max-length": 200,

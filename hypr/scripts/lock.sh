@@ -17,4 +17,4 @@ do
     swaylock_args="$swaylock_args --image $monitor:$scr_dir/$monitor.jpg"
 done
 
-swaylock $swaylock_args
+swaylock -f $swaylock_args
