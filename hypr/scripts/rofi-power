@@ -9,14 +9,9 @@ lock=' Lock'
 suspend=' Suspend'
 log_out=' Logout'
 
-chosen=$(printf '%s;%s;%s;%s;%s\n' "$power_off" "$reboot" "$lock" "$suspend" \
+chosen=$(printf '%s\n%s\n%s\n%s\n%s' "$power_off" "$reboot" "$lock" "$suspend" \
                                    "$log_out" \
-    | rofi -theme-str "#listview {lines: 5; }"\
-           -dmenu \
-           -sep ';' \
-           -selected-row 1.5\
-           -fixed-num-lines\
-           -eh 2)
+    | wofi --dmenu)
 
 case "$chosen" in
     "$power_off")
@@ -35,7 +30,7 @@ case "$chosen" in
         # Pause music and mute volume before suspending.
         playerctl stop
         amixer set Master mute
-        # TODO Add your suspend command.
+        systemctl suspend
         ;;
 
     "$log_out")
